@@ -13,13 +13,20 @@ function Navbar() {
           ESTAMPRINTAS
         </a>
       </section>
+
       <section className="navbar-section">
-        <a href="..." className="btn btn-link">
-          Todas las estampillas
+        <a href="..." className="btn btn-link ">
+          TODAS
         </a>
         <a href="..." className="btn btn-link">
-          Carrito
+          Argentina
         </a>
+        <a href="..." className="btn btn-link">
+          Otros países
+        </a>
+      </section>
+
+      <section>
         <div className="input-group input-inline">
           <input
             className="form-input"
