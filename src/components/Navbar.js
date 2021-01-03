@@ -5,8 +5,8 @@ const StyledNav = styled.header`
   border-bottom: 1pt solid black;
 
   img {
-    display: inline-block;
-    width: 80px;
+    width: 30px;
+    margin: 0.5rem;
   }
 
   @media screen and (max-width: 769px) {
