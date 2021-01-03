@@ -2,14 +2,30 @@ import styled from 'styled-components';
 
 const StyledNav = styled.header`
   padding: 1rem;
-  border-bottom: 2pt solid black;
+  border-bottom: 1pt solid black;
+
+  img {
+    display: inline-block;
+    width: 80px;
+  }
+
+  @media screen and (max-width: 769px) {
+    align-items: center;
+    justify-content: center;
+
+    .navbar-section {
+      align-items: center;
+      justify-content: center;
+    }
+  }
 `;
 
 function Navbar() {
   return (
     <StyledNav className="navbar">
       <section className="navbar-section">
-        <a href="..." className="navbar-brand mr-2">
+        <img src="assets/logo.svg" alt="Logo" />
+        <a href="..." className="navbar-brand mr-2 text-dark">
           ESTAMPRINTAS
         </a>
       </section>
