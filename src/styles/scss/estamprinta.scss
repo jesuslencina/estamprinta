@@ -1,6 +1,9 @@
+//Import Google Fonts
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,500&display=swap');
+
 // Define variables to override default ones
 $primary-color: #ecc02e;
 $secondary-color: #f0e1b0;
-
+$base-font-family: 'Josefin Sans', sans-serif;
 // Import full Spectre source code
 @import '../../../node_modules/spectre.css/src/spectre';
