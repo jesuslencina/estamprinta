@@ -1,6 +1,6 @@
 import './styles/css/estamprinta.css';
 
-import Navbar from './components/Navbar';
+import Navbar from './components/Navbar/Navbar';
 
 function App() {
   return (

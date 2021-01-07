@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import CartWidget from '../CartWidget/CartWidget';
+
 const StyledNav = styled.header`
   padding: 1rem;
   border-bottom: 1pt solid black;
@@ -7,6 +9,11 @@ const StyledNav = styled.header`
   img {
     width: 30px;
     margin: 0.5rem;
+  }
+
+  section {
+    display: flex;
+    align-items: center;
   }
 
   @media screen and (max-width: 769px) {
@@ -20,7 +27,7 @@ const StyledNav = styled.header`
   }
 `;
 
-function Navbar() {
+const Navbar = () => {
   return (
     <StyledNav className="navbar">
       <section className="navbar-section">
@@ -51,9 +58,10 @@ function Navbar() {
           />
           <button className="btn btn-primary input-group-btn">Buscar</button>
         </div>
+        <CartWidget amount={8} />
       </section>
     </StyledNav>
   );
-}
+};
 
 export default Navbar;
