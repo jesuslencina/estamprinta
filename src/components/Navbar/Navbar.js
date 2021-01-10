@@ -37,7 +37,7 @@ const Navbar = () => {
         </a>
       </section>
 
-      <section className="navbar-section">
+      <section className="navbar-center">
         <a href="..." className="btn btn-link ">
           TODAS
         </a>
@@ -49,7 +49,7 @@ const Navbar = () => {
         </a>
       </section>
 
-      <section>
+      <section className="navbar-section">
         <div className="input-group input-inline">
           <input
             className="form-input"
@@ -57,8 +57,8 @@ const Navbar = () => {
             placeholder="término a buscar"
           />
           <button className="btn btn-primary input-group-btn">Buscar</button>
+          <CartWidget amount={8} />
         </div>
-        <CartWidget amount={8} />
       </section>
     </StyledNav>
   );

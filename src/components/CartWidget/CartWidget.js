@@ -18,8 +18,6 @@ const StyledCartWidget = styled.div`
 
   img {
     width: 30px;
-    margin: 0 0.5rem;
-    opacity: 0.65;
   }
 `;
 
