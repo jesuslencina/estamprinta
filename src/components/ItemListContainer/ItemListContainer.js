@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Counter from '../Counter/Counter';
 
 const StyledItemListContainer = styled.div`
   display: flex;
@@ -9,10 +10,10 @@ const StyledItemListContainer = styled.div`
   height: 100vh;
 `;
 
-const ItemListContainer = ({ greeting }) => {
+const ItemListContainer = () => {
   return (
     <StyledItemListContainer>
-      <h1>{greeting}</h1>
+      <Counter stock={5} initial={1} />
     </StyledItemListContainer>
   );
 };
