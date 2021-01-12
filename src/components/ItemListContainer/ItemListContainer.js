@@ -13,7 +13,7 @@ const StyledItemListContainer = styled.div`
 const ItemListContainer = () => {
   return (
     <StyledItemListContainer>
-      <Counter stock={5} initial={1} />
+      <Counter stock={7} initial={1} />
     </StyledItemListContainer>
   );
 };

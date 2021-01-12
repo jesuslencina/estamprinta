@@ -15,10 +15,13 @@ const StyledCounter = styled.div`
     display: flex;
     width: 20%;
     justify-content: space-between;
+
     span {
       border-radius: 27px;
       font-size: 4rem;
       padding: 2rem;
+      user-select: none;
+
       &:hover {
         cursor: pointer;
       }
