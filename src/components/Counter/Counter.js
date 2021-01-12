@@ -51,6 +51,7 @@ const Counter = ({ stock, initial }) => {
           +
         </span>
       </div>
+      <button className="btn btn-primary">Agregar al Carrito</button>
     </StyledCounter>
   );
 };
