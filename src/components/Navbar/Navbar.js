@@ -5,6 +5,9 @@ import CartWidget from '../CartWidget/CartWidget';
 const StyledNav = styled.header`
   padding: 1rem;
   border-bottom: 1pt solid black;
+  position: fixed;
+  width: 100%;
+  background-color: white;
 
   img {
     width: 30px;
