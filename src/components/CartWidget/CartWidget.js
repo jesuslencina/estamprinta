@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import Cart from '../../assets/cart.svg';
+
 const StyledCartWidget = styled.div`
   align-items: center;
   justify-content: center;
@@ -24,7 +26,7 @@ const StyledCartWidget = styled.div`
 const CartWidget = ({ amount }) => {
   return (
     <StyledCartWidget>
-      <img src="assets/cart.svg" alt="Carrito" />
+      <img src={Cart} alt="Carrito" />
       <span className="bg-primary">{amount}</span>
     </StyledCartWidget>
   );

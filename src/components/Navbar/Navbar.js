@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import Logo from '../../assets/logo.svg';
+
 import CartWidget from '../CartWidget/CartWidget';
 
 const StyledNav = styled.header`
@@ -34,7 +36,7 @@ const Navbar = () => {
   return (
     <StyledNav className="navbar">
       <section className="navbar-section">
-        <img src="assets/logo.svg" alt="Logo" />
+        <img src={Logo} alt="Logo" />
         <a href="..." className="navbar-brand mr-2 text-dark">
           ESTAMPRINTAS
         </a>
