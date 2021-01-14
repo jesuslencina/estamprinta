@@ -14,7 +14,7 @@ const StyledCartWidget = styled.div`
     right: 0;
     bottom: 0;
     font-size: 0.75rem;
-    padding: 0.15rem 0.35rem;
+    padding: 0 0.35rem;
     border-radius: 27px;
   }
 

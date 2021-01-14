@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import Counter from '../Counter/Counter';
 
 const StyledItemListContainer = styled.div`
   display: flex;
@@ -11,11 +10,7 @@ const StyledItemListContainer = styled.div`
 `;
 
 const ItemListContainer = () => {
-  return (
-    <StyledItemListContainer>
-      <Counter stock={7} initial={1} />
-    </StyledItemListContainer>
-  );
+  return <StyledItemListContainer></StyledItemListContainer>;
 };
 
 export default ItemListContainer;
