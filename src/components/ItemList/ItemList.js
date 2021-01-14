@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import Item from '../Item/Item';
@@ -43,18 +43,48 @@ const stamps = [
 ];
 
 const ItemList = () => {
+  const [promStatus, setPromStatus] = useState('Pending');
+  const [fetchedStamps, setfetchedStamps] = useState([]);
+
+  const emulateFetch = () => {
+    let findItems = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        stamps.length ? resolve(stamps) : reject('No items available');
+      }, 2000);
+    });
+
+    findItems
+      .then((res) => {
+        console.log('ITEMS FOUND! ', res);
+        setfetchedStamps(res);
+        setPromStatus('Success');
+      })
+      .catch((err) => {
+        console.log('There was an error: ', err);
+        setPromStatus('Failed');
+      });
+  };
+
+  useEffect(() => {
+    emulateFetch();
+  }, []);
+
   return (
-    <StyledItemList>
-      {stamps.map((item) => (
-        <Item
-          key={item.id}
-          title={item.title}
-          desc={item.desc}
-          price={item.price}
-          imgUrl={item.imgUrl}
-        />
-      ))}
-    </StyledItemList>
+    <>
+      <h1>Promise status: {promStatus}</h1>
+      <StyledItemList>
+        {promStatus === 'Success' &&
+          fetchedStamps.map((item) => (
+            <Item
+              key={item.id}
+              title={item.title}
+              desc={item.desc}
+              price={item.price}
+              imgUrl={item.imgUrl}
+            />
+          ))}
+      </StyledItemList>
+    </>
   );
 };
 
