@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import ItemList from '../ItemList/ItemList';
+
 const StyledItemListContainer = styled.div`
   display: flex;
   align-items: center;
@@ -10,7 +12,11 @@ const StyledItemListContainer = styled.div`
 `;
 
 const ItemListContainer = () => {
-  return <StyledItemListContainer></StyledItemListContainer>;
+  return (
+    <StyledItemListContainer>
+      <ItemList />
+    </StyledItemListContainer>
+  );
 };
 
 export default ItemListContainer;
