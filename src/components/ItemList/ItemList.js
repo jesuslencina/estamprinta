@@ -10,71 +10,19 @@ const StyledItemList = styled.section`
   padding: 2rem;
 `;
 
-//!JUST A DUMMY TEST ARRAY
-const stamps = [
-  {
-    id: 0,
-    title: 'Agricultura',
-    desc: 'Argentina',
-    price: 40,
-    imgUrl: 'https://i.imgur.com/j9FY7r7.jpg',
-  },
-  {
-    id: 1,
-    title: 'Argentina en mapamundi',
-    desc: 'Argentina',
-    price: 100,
-    imgUrl: 'https://i.imgur.com/QKjm7Fv.jpg',
-  },
-  {
-    id: 2,
-    title: 'Flor: Begonia',
-    desc: 'Argentina',
-    price: 20,
-    imgUrl: 'https://i.imgur.com/edhAwje.jpg',
-  },
-  {
-    id: 3,
-    title: 'Brontosaurio',
-    desc: 'Corea del Norte',
-    price: 200,
-    imgUrl: 'https://i.imgur.com/gjlySm3.jpg',
-  },
-];
-
-const ItemList = () => {
-  const [promStatus, setPromStatus] = useState('Pending');
-  const [fetchedStamps, setfetchedStamps] = useState([]);
-
-  const emulateFetch = () => {
-    let findItems = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        stamps.length ? resolve(stamps) : reject('No items available');
-      }, 2000);
-    });
-
-    findItems
-      .then((res) => {
-        console.log('ITEMS FOUND! ', res);
-        setfetchedStamps(res);
-        setPromStatus('Success');
-      })
-      .catch((err) => {
-        console.log('There was an error: ', err);
-        setPromStatus('Failed');
-      });
-  };
+const ItemList = ({ status, fetched }) => {
+  const [receivedArr, setReceivedArr] = useState([]);
 
   useEffect(() => {
-    emulateFetch();
-  }, []);
+    setReceivedArr(fetched);
+  }, [fetched]);
 
   return (
     <>
-      <h1>Promise status: {promStatus}</h1>
+      <h1>Promise status: {status}</h1>
       <StyledItemList>
-        {promStatus === 'Success' &&
-          fetchedStamps.map((item) => (
+        {status === 'Success' &&
+          receivedArr?.map((item) => (
             <Item
               key={item.id}
               title={item.title}
