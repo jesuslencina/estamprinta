@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import Item from '../Item/Item';
@@ -11,18 +11,12 @@ const StyledItemList = styled.section`
 `;
 
 const ItemList = ({ status, fetched }) => {
-  const [receivedArr, setReceivedArr] = useState([]);
-
-  useEffect(() => {
-    setReceivedArr(fetched);
-  }, [fetched]);
-
   return (
     <>
       <h1>Promise status: {status}</h1>
       <StyledItemList>
         {status === 'Success' &&
-          receivedArr?.map((item) => (
+          fetched?.map((item) => (
             <Item
               key={item.id}
               title={item.title}
