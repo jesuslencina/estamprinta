@@ -3,28 +3,30 @@ import styled from 'styled-components';
 
 const StyledCounter = styled.div`
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  width: 100%;
+  width: fit-content;
 
-  h2 {
-    font-size: 8rem;
+  p {
+    font-size: 2rem;
+    width: 3rem;
+    text-align: center;
+    margin: 0;
   }
 
-  .modify-buttons {
-    display: flex;
-    width: 20%;
-    justify-content: space-between;
+  button {
+    border-radius: 37px;
+    border: none;
+    font-size: 1.2rem;
+    user-select: none;
+    padding: 0.25rem 1rem;
 
-    span {
-      border-radius: 27px;
-      font-size: 4rem;
-      padding: 2rem;
-      user-select: none;
+    &:hover {
+      cursor: pointer;
+    }
 
-      &:hover {
-        cursor: pointer;
-      }
+    &:focus {
+      outline: none;
     }
   }
 `;
@@ -42,16 +44,13 @@ const Counter = ({ stock, initial }) => {
 
   return (
     <StyledCounter>
-      <h2>{count}</h2>
-      <div className="modify-buttons">
-        <span onClick={removeToAmount} className="bg-primary">
-          -
-        </span>
-        <span onClick={addToAmount} className="bg-primary">
-          +
-        </span>
-      </div>
-      <button className="btn btn-primary">Agregar al Carrito</button>
+      <button onClick={removeToAmount} className="bg-primary">
+        -
+      </button>
+      <p>{count}</p>
+      <button onClick={addToAmount} className="bg-primary">
+        +
+      </button>
     </StyledCounter>
   );
 };
