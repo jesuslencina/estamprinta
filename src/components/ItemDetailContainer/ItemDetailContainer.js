@@ -10,6 +10,10 @@ const StyledItemDetailContainer = styled.div`
   justify-content: center;
   background-color: #ede7d8;
   height: 100vh;
+
+  @media screen and (max-width: 769px) {
+    height: 100%;
+  }
 `;
 
 //!DUMMY
@@ -70,7 +74,7 @@ const ItemDetailContainer = () => {
         setPromStatus('Success');
       })
       .catch((err) => {
-        setPromStatus('Failed');
+        setPromStatus('Failed: ' + err);
       });
   };
 

@@ -9,6 +9,12 @@ const StyledItemDetail = styled.div`
   border: 1pt solid gray;
   width: 60%;
   background-color: white;
+
+  @media screen and (max-width: 769px) {
+    margin-top: 8vh;
+    flex-direction: column;
+    width: 95%;
+  }
 `;
 
 const StyledItemDetailLeft = styled.div`
@@ -17,6 +23,13 @@ const StyledItemDetailLeft = styled.div`
 
   img {
     width: 20rem;
+  }
+
+  @media screen and (max-width: 769px) {
+    align-items: center;
+    img {
+      width: 75%;
+    }
   }
 `;
 
@@ -31,6 +44,11 @@ const StyledItemDetailRight = styled.div`
 
   b {
     font-size: 2rem;
+  }
+
+  @media screen and (max-width: 769px) {
+    align-items: center;
+    padding: 1rem;
   }
 `;
 

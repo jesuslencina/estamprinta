@@ -9,6 +9,12 @@ const StyledItemListContainer = styled.div`
   justify-content: center;
   background-color: #ede7d8;
   height: 100vh;
+
+  @media screen and (max-width: 769px) {
+    flex-direction: column;
+    padding-top: 20vh;
+    height: 100%;
+  }
 `;
 
 //!JUST A DUMMY TEST ARRAY
@@ -60,7 +66,7 @@ const ItemListContainer = () => {
         setPromStatus('Success');
       })
       .catch((err) => {
-        setPromStatus('Failed');
+        setPromStatus('Failed: ' + err);
       });
   };
 

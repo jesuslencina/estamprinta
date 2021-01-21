@@ -9,6 +9,10 @@ const StyledItemList = styled.section`
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 2rem;
   padding: 2rem;
+
+  @media screen and (max-width: 769px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const ItemList = ({ status, fetched }) => {

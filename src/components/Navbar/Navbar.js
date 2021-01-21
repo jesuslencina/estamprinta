@@ -21,6 +21,7 @@ const StyledNav = styled.header`
     align-items: center;
   }
 
+  p,
   .navbar-brand {
     margin: 0;
   }
@@ -46,15 +47,9 @@ const Navbar = () => {
         </section>
       </NavLink>
       <section className="navbar-center">
-        <a href="..." className="btn btn-link ">
-          TODAS
-        </a>
-        <a href="..." className="btn btn-link">
-          Argentina
-        </a>
-        <a href="..." className="btn btn-link">
-          Otros países
-        </a>
+        <p className="btn btn-link ">TODAS</p>
+        <p className="btn btn-link">Argentina</p>
+        <p className="btn btn-link">Otros países</p>
       </section>
 
       <section className="navbar-section">
