@@ -15,18 +15,18 @@ const StyledItemList = styled.section`
   }
 `;
 
-const ItemList = ({ status, fetched }) => {
+const ItemList = ({ status, stamps }) => {
   return (
     <>
       {status === 'Pending' ? (
         <h2>Promise: {status}</h2>
       ) : (
         <StyledItemList>
-          {fetched?.map((item) => (
+          {stamps?.map((item) => (
             <Link to={`/item/${item.id}`} key={item.id}>
               <Item
                 title={item.title}
-                desc={item.desc}
+                origin={item.origin}
                 price={item.price}
                 imgUrl={item.imgUrl}
               />

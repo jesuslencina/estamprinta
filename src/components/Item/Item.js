@@ -9,7 +9,7 @@ const StyledCard = styled.div`
   }
 `;
 
-const Item = ({ title, desc, price, imgUrl }) => {
+const Item = ({ title, origin, price, imgUrl }) => {
   return (
     <StyledCard className="card">
       <div className="card-image">
@@ -19,7 +19,7 @@ const Item = ({ title, desc, price, imgUrl }) => {
         <div className="card-title h5">{title}</div>
         <div className="card-subtitle text-gray">${price}</div>
       </div>
-      <div className="card-body">{desc}</div>
+      <div className="card-body">{origin}</div>
       <div className="card-footer">
         <button className="btn btn-primary">Comprar</button>
       </div>

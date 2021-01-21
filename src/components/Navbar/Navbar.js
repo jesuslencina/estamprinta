@@ -52,7 +52,8 @@ const Navbar = () => {
         {categories.map((category) => {
           return (
             <NavLink
-              to={`/categories/${category.toLowerCase()}`}
+              key={category}
+              to={`/category/${category.toLowerCase()}`}
               className="btn btn-link"
             >
               {category}
