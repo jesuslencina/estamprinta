@@ -66,15 +66,12 @@ const ItemDetailContainer = () => {
 
     findItems
       .then((res) => {
-        console.log('ITEMS FOUND! ', res);
         setfetchedStamps(res);
         setPromStatus('Success');
       })
       .catch((err) => {
-        console.log('There was an error: ', err);
         setPromStatus('Failed');
       });
-    console.log(fetchedStamps);
   };
 
   useEffect(() => {

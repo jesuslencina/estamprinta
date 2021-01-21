@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 
@@ -36,10 +36,6 @@ const StyledItemDetailRight = styled.div`
 
 const ItemDetail = ({ status, stamps }) => {
   const itemId = useParams();
-
-  useEffect(() => {
-    console.log(itemId);
-  }, [itemId]);
 
   return (
     <>

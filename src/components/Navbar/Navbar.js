@@ -21,6 +21,10 @@ const StyledNav = styled.header`
     align-items: center;
   }
 
+  .navbar-brand {
+    margin: 0;
+  }
+
   @media screen and (max-width: 769px) {
     align-items: center;
     justify-content: center;
@@ -38,9 +42,7 @@ const Navbar = () => {
       <NavLink to="/">
         <section className="navbar-section">
           <img src={Logo} alt="Logo" />
-          <a href="..." className="navbar-brand mr-2 text-dark">
-            ESTAMPRINTAS
-          </a>
+          <p className="navbar-brand mr-2 text-dark">ESTAMPRINTAS</p>
         </section>
       </NavLink>
       <section className="navbar-center">
