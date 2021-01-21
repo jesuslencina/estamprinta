@@ -51,7 +51,7 @@ const stamps = [
     imgUrl: 'https://i.imgur.com/gjlySm3.jpg',
     origin: 'Corea del Norte',
     desc:
-      'Una muy bella estampsilla con temática prehistórica, emitida como parte de una colección en la década de los 90.',
+      'Una muy bella estampilla con temática prehistórica, emitida como parte de una colección en la década de los 90.',
     price: 200,
     stock: 4,
   },

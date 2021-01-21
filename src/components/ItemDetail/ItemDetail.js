@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 
@@ -54,6 +54,12 @@ const StyledItemDetailRight = styled.div`
 
 const ItemDetail = ({ status, stamps }) => {
   const itemId = useParams();
+  const [currentStamp, setCurrentStamp] = useState([]);
+
+  useEffect(() => {
+    let filtered = stamps.filter((stamp) => stamp.id.toString() === itemId.id);
+    setCurrentStamp(filtered[0]);
+  }, [itemId, stamps]);
 
   return (
     <>
@@ -63,18 +69,15 @@ const ItemDetail = ({ status, stamps }) => {
         stamps && (
           <StyledItemDetail>
             <StyledItemDetailLeft>
-              <img
-                src={stamps[itemId.id].imgUrl}
-                alt={stamps[itemId.id].name}
-              />
+              <img src={currentStamp.imgUrl} alt={currentStamp.name} />
             </StyledItemDetailLeft>
             <StyledItemDetailRight>
-              <h2>{stamps[itemId.id].title}</h2>
-              <i>País: {stamps[itemId.id].origin}</i>
-              <p>{stamps[itemId.id].desc}</p>
-              <b>Precio: ${stamps[itemId.id].price}</b>
-              <i>Stock: {stamps[itemId.id].stock}</i>
-              <Counter initial={1} stock={stamps[itemId.id].stock} />
+              <h2>{currentStamp.title}</h2>
+              <i>País: {currentStamp.origin}</i>
+              <p>{currentStamp.desc}</p>
+              <b>Precio: ${currentStamp.price}</b>
+              <i>Stock: {currentStamp.stock}</i>
+              <Counter initial={1} stock={currentStamp.stock} />
               <button className="btn btn-primary">Agregar al Carrito</button>
             </StyledItemDetailRight>
           </StyledItemDetail>
