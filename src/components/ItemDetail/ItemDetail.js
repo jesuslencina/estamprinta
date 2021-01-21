@@ -69,7 +69,7 @@ const ItemDetail = ({ status, stamps }) => {
         stamps && (
           <StyledItemDetail>
             <StyledItemDetailLeft>
-              <img src={currentStamp.imgUrl} alt={currentStamp.name} />
+              <img src={currentStamp.imgUrl} alt={currentStamp.title} />
             </StyledItemDetailLeft>
             <StyledItemDetailRight>
               <h2>{currentStamp.title}</h2>
