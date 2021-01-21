@@ -34,7 +34,7 @@ const StyledItemDetailRight = styled.div`
   }
 `;
 
-const ItemDetail = ({ status, stamp }) => {
+const ItemDetail = ({ status, stamps }) => {
   const itemId = useParams();
 
   useEffect(() => {
@@ -46,20 +46,25 @@ const ItemDetail = ({ status, stamp }) => {
       {status === 'Pending' ? (
         <h2>Promise: {status}</h2>
       ) : (
-        <StyledItemDetail>
-          <StyledItemDetailLeft>
-            <img src={stamp.imgUrl} alt={stamp.name} />
-          </StyledItemDetailLeft>
-          <StyledItemDetailRight>
-            <h2>{stamp.title}</h2>
-            <i>País: {stamp.origin}</i>
-            <p>{stamp.desc}</p>
-            <b>Precio: ${stamp.price}</b>
-            <i>Stock: {stamp.stock}</i>
-            <Counter initial={1} stock={stamp.stock} />
-            <button className="btn btn-primary">Agregar al Carrito</button>
-          </StyledItemDetailRight>
-        </StyledItemDetail>
+        stamps && (
+          <StyledItemDetail>
+            <StyledItemDetailLeft>
+              <img
+                src={stamps[itemId.id].imgUrl}
+                alt={stamps[itemId.id].name}
+              />
+            </StyledItemDetailLeft>
+            <StyledItemDetailRight>
+              <h2>{stamps[itemId.id].title}</h2>
+              <i>País: {stamps[itemId.id].origin}</i>
+              <p>{stamps[itemId.id].desc}</p>
+              <b>Precio: ${stamps[itemId.id].price}</b>
+              <i>Stock: {stamps[itemId.id].stock}</i>
+              <Counter initial={1} stock={stamps[itemId.id].stock} />
+              <button className="btn btn-primary">Agregar al Carrito</button>
+            </StyledItemDetailRight>
+          </StyledItemDetail>
+        )
       )}
     </>
   );

@@ -14,10 +14,11 @@ const StyledItemList = styled.section`
 const ItemList = ({ status, fetched }) => {
   return (
     <>
-      <h1>Promise status: {status}</h1>
-      <StyledItemList>
-        {status === 'Success' &&
-          fetched?.map((item) => (
+      {status === 'Pending' ? (
+        <h2>Promise: {status}</h2>
+      ) : (
+        <StyledItemList>
+          {fetched?.map((item) => (
             <Link to={`/item/${item.id}`} key={item.id}>
               <Item
                 title={item.title}
@@ -27,7 +28,8 @@ const ItemList = ({ status, fetched }) => {
               />
             </Link>
           ))}
-      </StyledItemList>
+        </StyledItemList>
+      )}
     </>
   );
 };
