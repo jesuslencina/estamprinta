@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import { useParams } from 'react-router-dom';
 
 import Counter from '../Counter/Counter';
 
@@ -7,6 +8,7 @@ const StyledItemDetail = styled.div`
   display: flex;
   border: 1pt solid gray;
   width: 60%;
+  background-color: white;
 `;
 
 const StyledItemDetailLeft = styled.div`
@@ -33,6 +35,12 @@ const StyledItemDetailRight = styled.div`
 `;
 
 const ItemDetail = ({ status, stamp }) => {
+  const itemId = useParams();
+
+  useEffect(() => {
+    console.log(itemId);
+  }, [itemId]);
+
   return (
     <>
       {status === 'Pending' ? (

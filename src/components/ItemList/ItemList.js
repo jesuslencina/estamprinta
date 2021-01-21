@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 import Item from '../Item/Item';
 
@@ -17,13 +18,14 @@ const ItemList = ({ status, fetched }) => {
       <StyledItemList>
         {status === 'Success' &&
           fetched?.map((item) => (
-            <Item
-              key={item.id}
-              title={item.title}
-              desc={item.desc}
-              price={item.price}
-              imgUrl={item.imgUrl}
-            />
+            <Link to={`/item/${item.id}`} key={item.id}>
+              <Item
+                title={item.title}
+                desc={item.desc}
+                price={item.price}
+                imgUrl={item.imgUrl}
+              />
+            </Link>
           ))}
       </StyledItemList>
     </>

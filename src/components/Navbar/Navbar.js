@@ -1,7 +1,7 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 import Logo from '../../assets/logo.svg';
-
 import CartWidget from '../CartWidget/CartWidget';
 
 const StyledNav = styled.header`
@@ -35,13 +35,14 @@ const StyledNav = styled.header`
 const Navbar = () => {
   return (
     <StyledNav className="navbar">
-      <section className="navbar-section">
-        <img src={Logo} alt="Logo" />
-        <a href="..." className="navbar-brand mr-2 text-dark">
-          ESTAMPRINTAS
-        </a>
-      </section>
-
+      <NavLink to="/">
+        <section className="navbar-section">
+          <img src={Logo} alt="Logo" />
+          <a href="..." className="navbar-brand mr-2 text-dark">
+            ESTAMPRINTAS
+          </a>
+        </section>
+      </NavLink>
       <section className="navbar-center">
         <a href="..." className="btn btn-link ">
           TODAS

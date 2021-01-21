@@ -8,6 +8,8 @@ const StyledItemDetailContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #ede7d8;
+  height: 100vh;
 `;
 
 //!DUMMY
@@ -30,7 +32,7 @@ const ItemDetailContainer = () => {
     let findItems = new Promise((resolve, reject) => {
       setTimeout(() => {
         stamp ? resolve(stamp) : reject('No items available');
-      }, 3000);
+      }, 2000);
     });
 
     findItems
