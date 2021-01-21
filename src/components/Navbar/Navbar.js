@@ -37,6 +37,8 @@ const StyledNav = styled.header`
   }
 `;
 
+const categories = ['Todas', 'Argentina', 'Otros'];
+
 const Navbar = () => {
   return (
     <StyledNav className="navbar">
@@ -47,9 +49,16 @@ const Navbar = () => {
         </section>
       </NavLink>
       <section className="navbar-center">
-        <p className="btn btn-link ">TODAS</p>
-        <p className="btn btn-link">Argentina</p>
-        <p className="btn btn-link">Otros países</p>
+        {categories.map((category) => {
+          return (
+            <NavLink
+              to={`/categories/${category.toLowerCase()}`}
+              className="btn btn-link"
+            >
+              {category}
+            </NavLink>
+          );
+        })}
       </section>
 
       <section className="navbar-section">
