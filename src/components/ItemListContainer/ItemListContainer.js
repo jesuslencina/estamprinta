@@ -64,62 +64,59 @@ const ItemListContainer = () => {
   const [stamps, setStamps] = useState([]);
   const categoryId = useParams();
 
-  const emulateFetch = () => {
-    let findItems = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        stampsObject.length
-          ? resolve(stampsObject)
-          : reject('No items available');
-      }, 1000);
-    });
-
-    findItems
-      .then((res) => {
-        filterByCategory(res);
-        setPromStatus('Success');
-      })
-      .catch((err) => {
-        setPromStatus('Failed: ' + err);
-      });
-  };
-
-  const filterByCategory = (fetched) => {
-    console.log('CAT ', categoryId.id);
-
-    let filteredStamps;
-    switch (categoryId.id) {
-      case undefined:
-        filteredStamps = fetched;
-        break;
-
-      case 'todas':
-        filteredStamps = fetched;
-
-        break;
-
-      case 'argentina':
-        filteredStamps = fetched.filter(
-          (stamp) => stamp.origin === 'Argentina'
-        );
-        break;
-
-      case 'otros':
-        filteredStamps = fetched.filter(
-          (stamp) => stamp.origin !== 'Argentina'
-        );
-        break;
-
-      default:
-        filteredStamps = fetched;
-        break;
-    }
-
-    setStamps(filteredStamps);
-  };
-
   useEffect(() => {
+    const emulateFetch = () => {
+      let findItems = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          stampsObject.length
+            ? resolve(stampsObject)
+            : reject('No items available');
+        }, 1000);
+      });
+
+      findItems
+        .then((res) => {
+          filterByCategory(res);
+          setPromStatus('Success');
+        })
+        .catch((err) => {
+          setPromStatus('Failed: ' + err);
+        });
+    };
+
     emulateFetch();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
+    const filterByCategory = (fetched) => {
+      let filteredStamps;
+      switch (categoryId.id) {
+        case undefined:
+          filteredStamps = fetched;
+          break;
+
+        case 'todas':
+          filteredStamps = fetched;
+
+          break;
+
+        case 'argentina':
+          filteredStamps = fetched.filter(
+            (stamp) => stamp.origin === 'Argentina'
+          );
+          break;
+
+        case 'otros':
+          filteredStamps = fetched.filter(
+            (stamp) => stamp.origin !== 'Argentina'
+          );
+          break;
+
+        default:
+          filteredStamps = fetched;
+          break;
+      }
+
+      setStamps(filteredStamps);
+    };
   }, [categoryId]);
 
   return (
