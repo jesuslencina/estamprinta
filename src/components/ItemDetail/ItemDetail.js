@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 import Counter from '../Counter/Counter';
 
@@ -75,11 +76,12 @@ const ItemDetail = ({ status, stamp, handleButton, buttonVisibility }) => {
                 handleButton={handleButton}
               />
 
-              <button
+              <Link
+                to="/cart"
                 className={`btn btn-primary ${!buttonVisibility && 'disabled'}`}
               >
                 Agregar al Carrito
-              </button>
+              </Link>
             </StyledItemDetailRight>
           </StyledItemDetail>
         )
