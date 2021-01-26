@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-
+import { useParams } from 'react-router-dom';
 import ItemDetail from '../ItemDetail/ItemDetail';
 
 const StyledItemDetailContainer = styled.div`
@@ -59,32 +59,45 @@ const stamps = [
 
 const ItemDetailContainer = () => {
   const [promStatus, setPromStatus] = useState('Pending');
-  const [fetchedStamps, setfetchedStamps] = useState([]);
-
-  const emulateFetch = () => {
-    let findItems = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        stamps ? resolve(stamps) : reject('No items available');
-      }, 2000);
-    });
-
-    findItems
-      .then((res) => {
-        setfetchedStamps(res);
-        setPromStatus('Success');
-      })
-      .catch((err) => {
-        setPromStatus('Failed: ' + err);
-      });
-  };
+  const [fetchedStamp, setfetchedStamp] = useState([]);
+  const [buttonVisibility, setButtonVisibility] = useState(false);
+  const itemId = useParams();
 
   useEffect(() => {
+    const emulateFetch = () => {
+      let findItems = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          stamps ? resolve(stamps) : reject('No items available');
+        }, 2000);
+      });
+
+      findItems
+        .then((res) => {
+          let filtered = res.filter(
+            (stamp) => stamp.id.toString() === itemId.id
+          );
+          setfetchedStamp(filtered[0]);
+          setPromStatus('Success');
+        })
+        .catch((err) => {
+          setPromStatus('Failed: ' + err);
+        });
+    };
     emulateFetch();
-  }, []);
+  }, [itemId, fetchedStamp]);
+
+  const handleButton = (value) => {
+    value > 0 ? setButtonVisibility(true) : setButtonVisibility(false);
+  };
 
   return (
     <StyledItemDetailContainer>
-      <ItemDetail status={promStatus} stamps={fetchedStamps} />
+      <ItemDetail
+        status={promStatus}
+        stamp={fetchedStamp}
+        handleButton={handleButton}
+        buttonVisibility={buttonVisibility}
+      />
     </StyledItemDetailContainer>
   );
 };

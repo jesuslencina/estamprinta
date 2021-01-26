@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { useParams } from 'react-router-dom';
 
 import Counter from '../Counter/Counter';
 
@@ -37,6 +36,7 @@ const StyledItemDetailRight = styled.div`
   display: flex;
   flex-direction: column;
   padding: 5rem 1rem;
+  width: 100%;
 
   i {
     opacity: 0.65;
@@ -52,39 +52,26 @@ const StyledItemDetailRight = styled.div`
   }
 `;
 
-const ItemDetail = ({ status, stamps }) => {
-  const itemId = useParams();
-  const [currentStamp, setCurrentStamp] = useState([]);
-  const [buttonVisibility, setButtonVisibility] = useState(false);
-
-  const handleButton = (value) => {
-    value > 0 ? setButtonVisibility(true) : setButtonVisibility(false);
-  };
-
-  useEffect(() => {
-    let filtered = stamps.filter((stamp) => stamp.id.toString() === itemId.id);
-    setCurrentStamp(filtered[0]);
-  }, [itemId, stamps]);
-
+const ItemDetail = ({ status, stamp, handleButton, buttonVisibility }) => {
   return (
     <>
       {status === 'Pending' ? (
         <h2>Promise: {status}</h2>
       ) : (
-        stamps && (
+        stamp && (
           <StyledItemDetail>
             <StyledItemDetailLeft>
-              <img src={currentStamp.imgUrl} alt={currentStamp.title} />
+              <img src={stamp.imgUrl} alt={stamp.title} />
             </StyledItemDetailLeft>
             <StyledItemDetailRight>
-              <h2>{currentStamp.title}</h2>
-              <i>País: {currentStamp.origin}</i>
-              <p>{currentStamp.desc}</p>
-              <b>Precio: ${currentStamp.price}</b>
-              <i>Stock: {currentStamp.stock}</i>
+              <h2>{stamp.title}</h2>
+              <i>País: {stamp.origin}</i>
+              <p>{stamp.desc}</p>
+              <b>Precio: ${stamp.price}</b>
+              <i>Stock: {stamp.stock}</i>
               <Counter
                 initial={0}
-                stock={currentStamp.stock}
+                stock={stamp.stock}
                 handleButton={handleButton}
               />
 
