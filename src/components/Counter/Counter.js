@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 const StyledCounter = styled.div`
@@ -31,8 +31,13 @@ const StyledCounter = styled.div`
   }
 `;
 
-const Counter = ({ stock, initial }) => {
+const Counter = ({ stock, initial, handleButton }) => {
   const [count, setCount] = useState(initial);
+
+  useEffect(() => {
+    handleButton(count);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [count]);
 
   const addToAmount = () => {
     count < stock && setCount(count + 1);

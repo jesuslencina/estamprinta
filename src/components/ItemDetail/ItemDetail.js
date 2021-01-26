@@ -55,6 +55,11 @@ const StyledItemDetailRight = styled.div`
 const ItemDetail = ({ status, stamps }) => {
   const itemId = useParams();
   const [currentStamp, setCurrentStamp] = useState([]);
+  const [buttonVisibility, setButtonVisibility] = useState(false);
+
+  const handleButton = (value) => {
+    value > 0 ? setButtonVisibility(true) : setButtonVisibility(false);
+  };
 
   useEffect(() => {
     let filtered = stamps.filter((stamp) => stamp.id.toString() === itemId.id);
@@ -77,8 +82,17 @@ const ItemDetail = ({ status, stamps }) => {
               <p>{currentStamp.desc}</p>
               <b>Precio: ${currentStamp.price}</b>
               <i>Stock: {currentStamp.stock}</i>
-              <Counter initial={1} stock={currentStamp.stock} />
-              <button className="btn btn-primary">Agregar al Carrito</button>
+              <Counter
+                initial={0}
+                stock={currentStamp.stock}
+                handleButton={handleButton}
+              />
+
+              <button
+                className={`btn btn-primary ${!buttonVisibility && 'disabled'}`}
+              >
+                Agregar al Carrito
+              </button>
             </StyledItemDetailRight>
           </StyledItemDetail>
         )
