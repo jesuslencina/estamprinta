@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
-
+import { CartContext } from '../../context/Context';
 import Cart from '../../assets/cart.svg';
 
 const StyledCartWidget = styled.div`
@@ -23,11 +23,13 @@ const StyledCartWidget = styled.div`
   }
 `;
 
-const CartWidget = ({ amount }) => {
+const CartWidget = () => {
+  const context = useContext(CartContext);
+
   return (
     <StyledCartWidget>
       <img src={Cart} alt="Carrito" />
-      <span className="bg-primary">{amount}</span>
+      {context.cart > 0 && <span className="bg-primary">{context.cart}</span>}
     </StyledCartWidget>
   );
 };

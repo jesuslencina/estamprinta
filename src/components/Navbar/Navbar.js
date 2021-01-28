@@ -26,13 +26,23 @@ const StyledNav = styled.header`
     margin: 0;
   }
 
+  .cart-section {
+    height: fit-content;
+  }
+
   @media screen and (max-width: 769px) {
     align-items: center;
     justify-content: center;
 
-    .navbar-section {
+    .navbar-center {
       align-items: center;
       justify-content: center;
+      width: 100%;
+    }
+
+    .cart-section {
+      width: 100%;
+      justify-content: center !important;
     }
   }
 `;
@@ -62,16 +72,8 @@ const Navbar = () => {
         })}
       </section>
 
-      <section className="navbar-section">
-        <div className="input-group input-inline">
-          <input
-            className="form-input"
-            type="text"
-            placeholder="término a buscar"
-          />
-          <button className="btn btn-primary input-group-btn">Buscar</button>
-          <CartWidget amount={8} />
-        </div>
+      <section className="navbar-section cart-section">
+        <CartWidget />
       </section>
     </StyledNav>
   );
