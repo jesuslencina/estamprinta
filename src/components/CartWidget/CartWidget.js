@@ -29,7 +29,9 @@ const CartWidget = () => {
   return (
     <StyledCartWidget>
       <img src={Cart} alt="Carrito" />
-      {context.cart > 0 && <span className="bg-primary">{context.cart}</span>}
+      {context.cart.length > 0 && (
+        <span className="bg-primary">{context.cart.length}</span>
+      )}
     </StyledCartWidget>
   );
 };

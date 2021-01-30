@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-
+import { CartContext } from '../../context/Context';
 import Counter from '../Counter/Counter';
 
 const StyledItemDetail = styled.div`
@@ -53,7 +53,15 @@ const StyledItemDetailRight = styled.div`
   }
 `;
 
-const ItemDetail = ({ status, stamp, handleButton, buttonVisibility }) => {
+const ItemDetail = ({
+  status,
+  stamp,
+  handleButton,
+  buttonVisibility,
+  count,
+  setCount,
+}) => {
+  const context = useContext(CartContext);
   return (
     <>
       {status === 'Pending' ? (
@@ -74,11 +82,14 @@ const ItemDetail = ({ status, stamp, handleButton, buttonVisibility }) => {
                 initial={0}
                 stock={stamp.stock}
                 handleButton={handleButton}
+                count={count}
+                setCount={setCount}
               />
 
               <Link
                 to="/cart"
                 className={`btn btn-primary ${!buttonVisibility && 'disabled'}`}
+                onClick={() => context.addItem(stamp.title, count)}
               >
                 Agregar al Carrito
               </Link>

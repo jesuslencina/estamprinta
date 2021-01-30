@@ -61,6 +61,7 @@ const ItemDetailContainer = () => {
   const [promStatus, setPromStatus] = useState('Pending');
   const [fetchedStamp, setfetchedStamp] = useState([]);
   const [buttonVisibility, setButtonVisibility] = useState(false);
+  const [count, setCount] = useState(0);
   const itemId = useParams();
 
   useEffect(() => {
@@ -97,6 +98,8 @@ const ItemDetailContainer = () => {
         stamp={fetchedStamp}
         handleButton={handleButton}
         buttonVisibility={buttonVisibility}
+        count={count}
+        setCount={setCount}
       />
     </StyledItemDetailContainer>
   );
