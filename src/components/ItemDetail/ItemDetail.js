@@ -6,14 +6,17 @@ import Counter from '../Counter/Counter';
 
 const StyledItemDetail = styled.div`
   display: flex;
-  border: 1pt solid gray;
+  align-items: center;
+  box-shadow: 0 0.25rem 1rem rgb(48 55 66 / 15%);
   width: 60%;
+  height: 60%;
   background-color: white;
 
   @media screen and (max-width: 769px) {
     margin-top: 8vh;
     flex-direction: column;
     width: 95%;
+    height: 100%;
   }
 `;
 

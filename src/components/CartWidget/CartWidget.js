@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { CartContext } from '../../context/Context';
 import Cart from '../../assets/cart.svg';
 
@@ -21,6 +22,11 @@ const StyledCartWidget = styled.div`
   img {
     width: 30px;
   }
+
+  a:focus {
+    box-shadow: none;
+    border: none;
+  }
 `;
 
 const CartWidget = () => {
@@ -28,10 +34,12 @@ const CartWidget = () => {
 
   return (
     <StyledCartWidget>
-      <img src={Cart} alt="Carrito" />
-      {context.cart.length > 0 && (
-        <span className="bg-primary">{context.cart.length}</span>
-      )}
+      <Link to="/cart">
+        <img src={Cart} alt="Carrito" />
+        {context.cart.length > 0 && (
+          <span className="bg-primary">{context.cart.length}</span>
+        )}
+      </Link>
     </StyledCartWidget>
   );
 };

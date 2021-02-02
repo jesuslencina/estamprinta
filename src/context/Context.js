@@ -1,9 +1,21 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 
 export const CartContext = createContext();
 
 export const CartProvider = (props) => {
   const [cart, setCart] = useState([]);
+
+  // GET LOCAL STORAGE ON LOAD
+  useEffect(() => {
+    if (localStorage.getItem('estamprintasCart') !== null) {
+      setCart(JSON.parse(localStorage.getItem('estamprintasCart')));
+    }
+  }, []);
+
+  // UPDATE LOCAL STORAGE ON CHANGE
+  useEffect(() => {
+    localStorage.setItem('estamprintasCart', JSON.stringify(cart));
+  }, [cart]);
 
   const addItem = (item, quantity) => {
     if (cart.filter((element) => element.item === item).length === 0) {

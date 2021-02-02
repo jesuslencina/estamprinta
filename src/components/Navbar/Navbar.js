@@ -30,6 +30,16 @@ const StyledNav = styled.header`
     height: fit-content;
   }
 
+  a.active {
+    box-shadow: none;
+    border: none;
+  }
+
+  .btn.btn-link.active {
+    background-color: #ecc02e;
+    color: white !important;
+  }
+
   @media screen and (max-width: 769px) {
     align-items: center;
     justify-content: center;
