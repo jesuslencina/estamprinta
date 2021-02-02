@@ -92,7 +92,7 @@ const ItemDetail = ({
               <Link
                 to="/cart"
                 className={`btn btn-primary ${!buttonVisibility && 'disabled'}`}
-                onClick={() => context.addItem(stamp.title, count)}
+                onClick={() => context.addItem(stamp.id, stamp.title, count)}
               >
                 Agregar al Carrito
               </Link>

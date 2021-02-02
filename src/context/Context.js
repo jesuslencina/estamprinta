@@ -17,11 +17,12 @@ export const CartProvider = (props) => {
     localStorage.setItem('estamprintasCart', JSON.stringify(cart));
   }, [cart]);
 
-  const addItem = (item, quantity) => {
-    if (cart.filter((element) => element.item === item).length === 0) {
+  const addItem = (id, item, quantity) => {
+    if (cart.filter((element) => element.id === id).length === 0) {
       setCart([
         ...cart,
         {
+          id: id,
           item: item,
           quantity: quantity,
         },
@@ -29,8 +30,8 @@ export const CartProvider = (props) => {
     }
   };
 
-  const removeItem = (item) => {
-    let cartWithoutIt = cart.filter((element) => element.item !== item);
+  const removeItem = (id) => {
+    let cartWithoutIt = cart.filter((element) => element.id !== id);
     setCart(cartWithoutIt);
   };
 

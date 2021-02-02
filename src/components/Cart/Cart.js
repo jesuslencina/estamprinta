@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import Bin from '../../assets/bin.svg';
 
 const StyledCart = styled.section`
   display: flex;
@@ -28,14 +29,41 @@ const StyledCart = styled.section`
 const StyledCartList = styled.section`
   display: flex;
   flex-direction: column;
+
   border: 1pt solid black;
 `;
 
 const StyledCartItem = styled.article`
   display: flex;
+  align-items: center;
+  border: 1pt solid pink;
+  img {
+    width: 10rem;
+  }
+
+  div {
+    display: flex;
+    flex-flow: column wrap;
+
+    i {
+      color: darkgray;
+    }
+
+    .bin {
+      width: 24px;
+      align-self: flex-end;
+      transition: transform 0.2s;
+      &:hover {
+        cursor: pointer;
+        transform: scale(1.2);
+      }
+    }
+  }
 `;
 
-const Cart = ({ context }) => {
+const Cart = ({ context, stamps }) => {
+  console.log(context.cart);
+
   return (
     <StyledCart>
       <h1>Carrito</h1>
@@ -47,7 +75,24 @@ const Cart = ({ context }) => {
           </Link>
         </div>
       ) : (
-        <p></p>
+        <StyledCartList>
+          {context.cart.map((item) => (
+            <StyledCartItem key={item.id}>
+              <img src={stamps[item.id].imgUrl} alt={stamps[item.id].title} />
+              <div>
+                <h4>{stamps[item.id].title}</h4>
+                <i>{item.quantity} unidades</i>
+                <b>${stamps[item.id].price}</b>
+                <img
+                  src={Bin}
+                  alt="Delete item"
+                  className="bin"
+                  onClick={() => context.removeItem(item.id)}
+                />
+              </div>
+            </StyledCartItem>
+          ))}
+        </StyledCartList>
       )}
     </StyledCart>
   );

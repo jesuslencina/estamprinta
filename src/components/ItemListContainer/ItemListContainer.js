@@ -18,48 +18,7 @@ const StyledItemListContainer = styled.div`
   }
 `;
 
-//!JUST A DUMMY TEST ARRAY
-const stampsObject = [
-  {
-    id: 0,
-    title: 'Agricultura',
-    imgUrl: 'https://i.imgur.com/j9FY7r7.jpg',
-    origin: 'Argentina',
-    desc: 'Una bella estampilla argentina mostrando un ambiente agreste.',
-    price: 40,
-    stock: 2,
-  },
-  {
-    id: 1,
-    title: 'Argentina en mapamundi',
-    imgUrl: 'https://i.imgur.com/QKjm7Fv.jpg',
-    origin: 'Argentina',
-    desc: 'La Argentina vista desde un panorama planetario.',
-    price: 100,
-    stock: 7,
-  },
-  {
-    id: 2,
-    title: 'Flor: Begonia',
-    imgUrl: 'https://i.imgur.com/edhAwje.jpg',
-    origin: 'Argentina',
-    desc: 'Una bella flor ilustrada.',
-    price: 20,
-    stock: 14,
-  },
-  {
-    id: 3,
-    title: 'Brontosaurio',
-    imgUrl: 'https://i.imgur.com/gjlySm3.jpg',
-    origin: 'Corea del Norte',
-    desc:
-      'Una muy bella estampilla con temática prehistórica, emitida como parte de una colección en la década de los 90.',
-    price: 200,
-    stock: 4,
-  },
-];
-
-const ItemListContainer = () => {
+const ItemListContainer = ({ stampsObject }) => {
   const [promStatus, setPromStatus] = useState('Pending');
   const [stamps, setStamps] = useState([]);
   const categoryId = useParams();
