@@ -5,7 +5,7 @@ import { CartContext } from '../../context/Context';
 
 const StyledCartContainer = styled.section`
   background-color: #ede7d8;
-  height: 100vh;
+  min-height: 100vh;
   padding-top: 6rem;
   display: flex;
   justify-content: center;

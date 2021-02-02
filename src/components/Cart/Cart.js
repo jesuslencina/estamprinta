@@ -10,7 +10,7 @@ const StyledCart = styled.section`
   background-color: white;
   box-shadow: 0 0.25rem 1rem rgb(48 55 66 / 15%);
   width: 80%;
-  height: 90%;
+  height: fit-content;
 
   h1 {
     margin: 2rem;
@@ -36,21 +36,28 @@ const StyledCartList = styled.section`
 const StyledCartItem = styled.article`
   display: flex;
   align-items: center;
-  border: 1pt solid pink;
+
   img {
-    width: 10rem;
+    width: 5rem;
   }
 
   div {
     display: flex;
     flex-flow: column wrap;
+    width: 100%;
+    padding: 1rem 0;
+
+    h4 {
+      margin: 0;
+    }
 
     i {
       color: darkgray;
     }
 
     .bin {
-      width: 24px;
+      margin: 0 0.5rem;
+      width: 16px;
       align-self: flex-end;
       transition: transform 0.2s;
       &:hover {
@@ -63,6 +70,13 @@ const StyledCartItem = styled.article`
 
 const Cart = ({ context, stamps }) => {
   console.log(context.cart);
+
+  const getQuantity = () => {
+    let amount = 0;
+    context.cart.map((item) => (amount = amount + item.quantity));
+
+    return amount;
+  };
 
   return (
     <StyledCart>
@@ -92,6 +106,7 @@ const Cart = ({ context, stamps }) => {
               </div>
             </StyledCartItem>
           ))}
+          <span className="h2">Cantidad de Items: {getQuantity()}</span>
         </StyledCartList>
       )}
     </StyledCart>
