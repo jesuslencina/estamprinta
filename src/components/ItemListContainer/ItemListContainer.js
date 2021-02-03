@@ -76,7 +76,7 @@ const ItemListContainer = ({ stampsObject }) => {
 
       setStamps(filteredStamps);
     };
-  }, [categoryId]);
+  }, [categoryId, stampsObject]);
 
   return (
     <StyledItemListContainer>
