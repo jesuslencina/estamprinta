@@ -25,27 +25,13 @@ const ItemListContainer = ({ stamps, loading }) => {
 
   useEffect(() => {
     let filteredStamps;
-    switch (categoryId.id) {
-      case undefined:
-        filteredStamps = stamps;
-        break;
 
-      case 'todas':
-        filteredStamps = stamps;
-
-        break;
-
-      case 'argentina':
-        filteredStamps = stamps.filter((stamp) => stamp.origin === 'Argentina');
-        break;
-
-      case 'otros':
-        filteredStamps = stamps.filter((stamp) => stamp.origin !== 'Argentina');
-        break;
-
-      default:
-        filteredStamps = stamps;
-        break;
+    if (categoryId.id) {
+      filteredStamps = stamps.filter(
+        (stamp) => stamp.category === categoryId.id
+      );
+    } else {
+      filteredStamps = stamps;
     }
 
     setDisplayingStamps(filteredStamps);

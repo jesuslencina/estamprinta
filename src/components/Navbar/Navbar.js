@@ -57,7 +57,7 @@ const StyledNav = styled.header`
   }
 `;
 
-const categories = ['Todas', 'Argentina', 'Otros'];
+const categories = ['Flores', 'Paisajes', 'Animales', 'Personas', 'Otros'];
 
 const Navbar = () => {
   return (
