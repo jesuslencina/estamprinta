@@ -35,6 +35,11 @@ const StyledNav = styled.header`
     border: none;
   }
 
+  .popover-container {
+    background-color: white;
+    width: inherit;
+  }
+
   .btn.btn-link.active {
     background-color: #ecc02e;
     color: white !important;
@@ -69,17 +74,22 @@ const Navbar = () => {
         </section>
       </NavLink>
       <section className="navbar-center">
-        {categories.map((category) => {
-          return (
-            <NavLink
-              key={category}
-              to={`/category/${category.toLowerCase()}`}
-              className="btn btn-link"
-            >
-              {category}
-            </NavLink>
-          );
-        })}
+        <div className="popover popover-bottom">
+          <p className="btn">Categories</p>
+          <div className="popover-container">
+            {categories.map((category) => {
+              return (
+                <NavLink
+                  key={category}
+                  to={`/category/${category.toLowerCase()}`}
+                  className="btn btn-link category"
+                >
+                  {category}
+                </NavLink>
+              );
+            })}
+          </div>
+        </div>
       </section>
 
       <section className="navbar-section cart-section">
