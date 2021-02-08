@@ -15,20 +15,21 @@ const StyledItemList = styled.section`
   }
 `;
 
-const ItemList = ({ status, stamps }) => {
+const ItemList = ({ loading, stamps }) => {
   return (
     <>
-      {status === 'Pending' ? (
-        <h2>Promise: {status}</h2>
+      {loading ? (
+        <div className="loading loading-lg"></div>
       ) : (
         <StyledItemList>
           {stamps?.map((item) => (
             <Link to={`/item/${item.id}`} key={item.id}>
               <Item
+                id={item.id}
                 title={item.title}
-                origin={item.origin}
+                category={item.category}
                 price={item.price}
-                imgUrl={item.imgUrl}
+                img={item.img}
               />
             </Link>
           ))}

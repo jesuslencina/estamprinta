@@ -17,34 +17,17 @@ const StyledItemDetailContainer = styled.div`
 `;
 
 const ItemDetailContainer = ({ stamps }) => {
-  const [promStatus, setPromStatus] = useState('Pending');
-  const [fetchedStamp, setfetchedStamp] = useState([]);
+  const [selectedStamp, setSelectedStamp] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [buttonVisibility, setButtonVisibility] = useState(false);
   const [count, setCount] = useState(0);
   const itemId = useParams();
 
   useEffect(() => {
-    const emulateFetch = () => {
-      let findItems = new Promise((resolve, reject) => {
-        setTimeout(() => {
-          stamps ? resolve(stamps) : reject('No items available');
-        }, 2000);
-      });
-
-      findItems
-        .then((res) => {
-          let filtered = res.filter(
-            (stamp) => stamp.id.toString() === itemId.id
-          );
-          setfetchedStamp(filtered[0]);
-          setPromStatus('Success');
-        })
-        .catch((err) => {
-          setPromStatus('Failed: ' + err);
-        });
-    };
-    emulateFetch();
-  }, [itemId, fetchedStamp, stamps]);
+    let filtered = stamps.filter((stamp) => stamp.id === itemId.id);
+    setSelectedStamp(filtered[0]);
+    setLoading(false);
+  }, [itemId, stamps]);
 
   const handleButton = (value) => {
     value > 0 ? setButtonVisibility(true) : setButtonVisibility(false);
@@ -53,8 +36,8 @@ const ItemDetailContainer = ({ stamps }) => {
   return (
     <StyledItemDetailContainer>
       <ItemDetail
-        status={promStatus}
-        stamp={fetchedStamp}
+        loading={loading}
+        stamp={selectedStamp}
         handleButton={handleButton}
         buttonVisibility={buttonVisibility}
         count={count}

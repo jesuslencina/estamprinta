@@ -1,6 +1,10 @@
+import React, { useState, useEffect } from 'react';
+
 import './styles/css/estamprinta.css';
 
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+
+import { getFirestore } from './firebase/index';
 
 import { CartProvider } from './context/Context';
 
@@ -9,48 +13,27 @@ import ItemListContainer from './components/ItemListContainer/ItemListContainer'
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
 import CartContainer from './components/CartContainer/CartContainer';
 
-//!DUMMY
-const stamps = [
-  {
-    id: 0,
-    title: 'Agricultura',
-    imgUrl: 'https://i.imgur.com/j9FY7r7.jpg',
-    origin: 'Argentina',
-    desc: 'Una bella estampilla argentina mostrando un ambiente agreste.',
-    price: 40,
-    stock: 2,
-  },
-  {
-    id: 1,
-    title: 'Argentina en mapamundi',
-    imgUrl: 'https://i.imgur.com/QKjm7Fv.jpg',
-    origin: 'Argentina',
-    desc: 'La Argentina vista desde un panorama planetario.',
-    price: 100,
-    stock: 7,
-  },
-  {
-    id: 2,
-    title: 'Flor: Begonia',
-    imgUrl: 'https://i.imgur.com/edhAwje.jpg',
-    origin: 'Argentina',
-    desc: 'Una bella flor ilustrada.',
-    price: 20,
-    stock: 14,
-  },
-  {
-    id: 3,
-    title: 'Brontosaurio',
-    imgUrl: 'https://i.imgur.com/gjlySm3.jpg',
-    origin: 'Corea del Norte',
-    desc:
-      'Una muy bella estampilla con temática prehistórica, emitida como parte de una colección en la década de los 90.',
-    price: 200,
-    stock: 4,
-  },
-];
-
 function App() {
+  const [stamps, setStamps] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let database = getFirestore();
+    let items = database.collection('stamps');
+    items
+      .get()
+      .then((querySnapshot) => {
+        let stampsArray = querySnapshot.docs.map((item) => {
+          return {
+            ...item.data(),
+            id: item.id,
+          };
+        });
+        setStamps(stampsArray);
+      })
+      .finally(setLoading(false));
+  }, []);
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -58,11 +41,11 @@ function App() {
           <Navbar />
           <Switch>
             <Route exact path="/">
-              <ItemListContainer stampsObject={stamps} />
+              <ItemListContainer stamps={stamps} loading={loading} />
             </Route>
 
             <Route path="/category/:id">
-              <ItemListContainer stampsObject={stamps} />
+              <ItemListContainer stamps={stamps} />
             </Route>
 
             <Route path="/item/:id">

@@ -57,7 +57,7 @@ const StyledItemDetailRight = styled.div`
 `;
 
 const ItemDetail = ({
-  status,
+  loading,
   stamp,
   handleButton,
   buttonVisibility,
@@ -67,38 +67,35 @@ const ItemDetail = ({
   const context = useContext(CartContext);
   return (
     <>
-      {status === 'Pending' ? (
-        <h2>Promise: {status}</h2>
+      {loading ? (
+        <div className="loading loading-lg"></div>
       ) : (
-        stamp && (
-          <StyledItemDetail>
-            <StyledItemDetailLeft>
-              <img src={stamp.imgUrl} alt={stamp.title} />
-            </StyledItemDetailLeft>
-            <StyledItemDetailRight>
-              <h2>{stamp.title}</h2>
-              <i>País: {stamp.origin}</i>
-              <p>{stamp.desc}</p>
-              <b>Precio: ${stamp.price}</b>
-              <i>Stock: {stamp.stock}</i>
-              <Counter
-                initial={0}
-                stock={stamp.stock}
-                handleButton={handleButton}
-                count={count}
-                setCount={setCount}
-              />
+        <StyledItemDetail>
+          <StyledItemDetailLeft>
+            <img src={stamp.img} alt={stamp.title} />
+          </StyledItemDetailLeft>
+          <StyledItemDetailRight>
+            <h2>{stamp.title}</h2>
+            <i>Origen: {stamp.origin.toUpperCase()}</i>
+            <b>Precio: ${stamp.price}</b>
+            <i>Stock: {stamp.stock}</i>
+            <Counter
+              initial={0}
+              stock={stamp.stock}
+              handleButton={handleButton}
+              count={count}
+              setCount={setCount}
+            />
 
-              <Link
-                to="/cart"
-                className={`btn btn-primary ${!buttonVisibility && 'disabled'}`}
-                onClick={() => context.addItem(stamp.id, stamp.title, count)}
-              >
-                Agregar al Carrito
-              </Link>
-            </StyledItemDetailRight>
-          </StyledItemDetail>
-        )
+            <Link
+              to="/cart"
+              className={`btn btn-primary ${!buttonVisibility && 'disabled'}`}
+              onClick={() => context.addItem(stamp, count)}
+            >
+              Agregar al Carrito
+            </Link>
+          </StyledItemDetailRight>
+        </StyledItemDetail>
       )}
     </>
   );

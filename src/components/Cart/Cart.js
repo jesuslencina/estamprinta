@@ -69,8 +69,6 @@ const StyledCartItem = styled.article`
 `;
 
 const Cart = ({ context, stamps }) => {
-  console.log(context.cart);
-
   const getQuantity = () => {
     let amount = 0;
     context.cart.map((item) => (amount = amount + item.quantity));
@@ -92,11 +90,11 @@ const Cart = ({ context, stamps }) => {
         <StyledCartList>
           {context.cart.map((item) => (
             <StyledCartItem key={item.id}>
-              <img src={stamps[item.id].imgUrl} alt={stamps[item.id].title} />
+              <img src={item.img} alt={item.title} />
               <div>
-                <h4>{stamps[item.id].title}</h4>
+                <h4>{item.title}</h4>
                 <i>{item.quantity} unidades</i>
-                <b>${stamps[item.id].price}</b>
+                <b>${item.price}</b>
                 <img
                   src={Bin}
                   alt="Delete item"

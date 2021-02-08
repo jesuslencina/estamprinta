@@ -17,13 +17,15 @@ export const CartProvider = (props) => {
     localStorage.setItem('estamprintasCart', JSON.stringify(cart));
   }, [cart]);
 
-  const addItem = (id, item, quantity) => {
-    if (cart.filter((element) => element.id === id).length === 0) {
+  const addItem = (stamp, quantity) => {
+    if (cart.filter((element) => element.id === stamp.id).length === 0) {
       setCart([
         ...cart,
         {
-          id: id,
-          item: item,
+          id: stamp.id,
+          title: stamp.title,
+          img: stamp.img,
+          price: stamp.price,
           quantity: quantity,
         },
       ]);
