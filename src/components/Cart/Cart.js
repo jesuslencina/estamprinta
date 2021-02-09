@@ -11,6 +11,7 @@ const StyledCart = styled.section`
   box-shadow: 0 0.25rem 1rem rgb(48 55 66 / 15%);
   width: 80%;
   height: fit-content;
+  min-height: 70vh;
 
   h1 {
     margin: 2rem;
@@ -29,8 +30,6 @@ const StyledCart = styled.section`
 const StyledCartList = styled.section`
   display: flex;
   flex-direction: column;
-
-  border: 1pt solid black;
 `;
 
 const StyledCartItem = styled.article`
@@ -44,7 +43,7 @@ const StyledCartItem = styled.article`
   div {
     display: flex;
     flex-flow: column wrap;
-    width: 100%;
+    width: 50%;
     padding: 1rem 0;
 
     h4 {
@@ -68,7 +67,7 @@ const StyledCartItem = styled.article`
   }
 `;
 
-const Cart = ({ context, stamps }) => {
+const Cart = ({ context }) => {
   const getQuantity = () => {
     let amount = 0;
     context.cart.map((item) => (amount = amount + item.quantity));
@@ -109,7 +108,7 @@ const Cart = ({ context, stamps }) => {
               </div>
             </StyledCartItem>
           ))}
-          <span className="h2">Cantidad de Items: {getQuantity()}</span>
+          <span className="h2">Cantidad de estampillas: {getQuantity()}</span>
           <span className="h2">Total: ${getTotal()}</span>
         </StyledCartList>
       )}

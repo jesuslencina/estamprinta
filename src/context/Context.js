@@ -29,6 +29,10 @@ export const CartProvider = (props) => {
           quantity: quantity,
         },
       ]);
+    } else {
+      alert(
+        'Ya tenés agregadas estampillas de ' + stamp.title + ' en tu carrito.'
+      );
     }
   };
 
