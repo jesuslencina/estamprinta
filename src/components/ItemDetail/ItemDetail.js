@@ -56,6 +56,17 @@ const StyledItemDetailRight = styled.div`
   }
 `;
 
+const Styled404 = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h1 {
+    font-size: 4rem;
+    margin: 0;
+  }
+`;
+
 const ItemDetail = ({
   loading,
   stamp,
@@ -70,7 +81,13 @@ const ItemDetail = ({
       {loading ? (
         <div className="loading loading-lg"></div>
       ) : stamp === 404 ? (
-        <h1>404</h1>
+        <Styled404>
+          <h1>404</h1>
+          <h3>Estampilla no encontrada.</h3>
+          <Link to="/">
+            <button className="btn btn-primary">Volver</button>
+          </Link>
+        </Styled404>
       ) : (
         <StyledItemDetail>
           <StyledItemDetailLeft>
