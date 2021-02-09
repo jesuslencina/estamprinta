@@ -20,6 +20,8 @@ const StyledItemListContainer = styled.div`
 `;
 
 const ItemListContainer = ({ stamps, loading }) => {
+  console.log('LOADING 1', loading);
+
   const [displayingStamps, setDisplayingStamps] = useState(stamps);
   const categoryId = useParams();
 
@@ -39,7 +41,11 @@ const ItemListContainer = ({ stamps, loading }) => {
 
   return (
     <StyledItemListContainer>
-      <ItemList loading={loading} stamps={displayingStamps} />
+      <ItemList
+        loading={loading}
+        stamps={displayingStamps}
+        category={categoryId.id}
+      />
     </StyledItemListContainer>
   );
 };

@@ -37,7 +37,7 @@ const StyledNav = styled.header`
 
   .popover-container {
     background-color: white;
-    width: inherit;
+    width: 50vw;
   }
 
   .btn.btn-link.active {
@@ -74,7 +74,7 @@ const Navbar = () => {
         </section>
       </NavLink>
       <section className="navbar-center">
-        <div className="popover popover-bottom">
+        <div className="popover popover-right">
           <p className="btn">Categories</p>
           <div className="popover-container">
             {categories.map((category) => {

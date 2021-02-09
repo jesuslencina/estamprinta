@@ -69,6 +69,8 @@ const ItemDetail = ({
     <>
       {loading ? (
         <div className="loading loading-lg"></div>
+      ) : stamp === 404 ? (
+        <h1>404</h1>
       ) : (
         <StyledItemDetail>
           <StyledItemDetailLeft>

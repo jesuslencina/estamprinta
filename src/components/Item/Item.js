@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 const StyledCard = styled.div`
   transition: transform 0.2s ease-in-out;
+  z-index: -1;
 
   div::first-letter {
     text-transform: uppercase;
@@ -11,6 +12,7 @@ const StyledCard = styled.div`
   &:hover {
     transform: scale(1.05);
     cursor: pointer;
+    z-index: -1;
   }
 `;
 

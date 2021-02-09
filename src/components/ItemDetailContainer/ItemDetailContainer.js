@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { getFirestore } from '../../firebase/index';
 import { useParams } from 'react-router-dom';
 import ItemDetail from '../ItemDetail/ItemDetail';
 
@@ -24,9 +25,22 @@ const ItemDetailContainer = ({ stamps }) => {
   const itemId = useParams();
 
   useEffect(() => {
-    let filtered = stamps.filter((stamp) => stamp.id === itemId.id);
-    setSelectedStamp(filtered[0]);
-    setLoading(false);
+    const database = getFirestore();
+    const stampDatabase = database.collection('stamps');
+    const stamp = stampDatabase.doc(itemId.id);
+    stamp
+      .get()
+      .then((doc) => {
+        if (!doc.exists) {
+          console.log('No existe');
+          setSelectedStamp(404);
+          return;
+        }
+        setSelectedStamp({ ...doc.data(), id: doc.id });
+        console.log(selectedStamp);
+      })
+      .catch((error) => console.log('Error: ' + error))
+      .finally(() => setLoading(false));
   }, [itemId, stamps]);
 
   const handleButton = (value) => {

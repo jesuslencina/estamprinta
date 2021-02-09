@@ -72,8 +72,13 @@ const Cart = ({ context, stamps }) => {
   const getQuantity = () => {
     let amount = 0;
     context.cart.map((item) => (amount = amount + item.quantity));
-
     return amount;
+  };
+
+  const getTotal = () => {
+    let total = 0;
+    context.cart.map((item) => (total = total + item.price * item.quantity));
+    return total;
   };
 
   return (
@@ -105,6 +110,7 @@ const Cart = ({ context, stamps }) => {
             </StyledCartItem>
           ))}
           <span className="h2">Cantidad de Items: {getQuantity()}</span>
+          <span className="h2">Total: ${getTotal()}</span>
         </StyledCartList>
       )}
     </StyledCart>
