@@ -37,7 +37,6 @@ const ItemDetailContainer = ({ stamps }) => {
           return;
         }
         setSelectedStamp({ ...doc.data(), id: doc.id });
-        console.log(selectedStamp);
       })
       .catch((error) => console.log('Error: ' + error))
       .finally(() => setLoading(false));

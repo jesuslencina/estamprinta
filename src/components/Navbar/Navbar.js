@@ -10,6 +10,7 @@ const StyledNav = styled.header`
   position: fixed;
   width: 100%;
   background-color: white;
+  z-index: 1000;
 
   img {
     width: 30px;
@@ -82,7 +83,7 @@ const Navbar = () => {
                 <NavLink
                   key={category}
                   to={`/category/${category.toLowerCase()}`}
-                  className="btn btn-link category"
+                  className="btn btn-link"
                 >
                   {category}
                 </NavLink>
