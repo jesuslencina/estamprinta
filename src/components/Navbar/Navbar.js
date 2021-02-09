@@ -46,6 +46,11 @@ const StyledNav = styled.header`
     color: white !important;
   }
 
+  .btn.btn-link.btn-all.active {
+    background-color: white;
+    color: #ecc02e !important;
+  }
+
   @media screen and (max-width: 769px) {
     align-items: center;
     justify-content: center;
@@ -76,8 +81,11 @@ const Navbar = () => {
       </NavLink>
       <section className="navbar-center">
         <div className="popover popover-right">
-          <p className="btn">Categories</p>
+          <p className="btn">Categorías</p>
           <div className="popover-container">
+            <NavLink key="todas" to="/" className="btn btn-link btn-all">
+              Todas
+            </NavLink>
             {categories.map((category) => {
               return (
                 <NavLink

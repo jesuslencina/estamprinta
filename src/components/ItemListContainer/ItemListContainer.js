@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
-
+import { getFirestore } from '../../firebase/index';
 import ItemList from '../ItemList/ItemList';
 
 const StyledItemListContainer = styled.div`
@@ -19,25 +19,35 @@ const StyledItemListContainer = styled.div`
   }
 `;
 
-const ItemListContainer = ({ stamps, loading }) => {
-  console.log('LOADING 1', loading);
-
-  const [displayingStamps, setDisplayingStamps] = useState(stamps);
+const ItemListContainer = () => {
+  const [loading, setLoading] = useState(true);
+  const [displayingStamps, setDisplayingStamps] = useState();
   const categoryId = useParams();
 
   useEffect(() => {
-    let filteredStamps;
+    setLoading(true);
+    let database = getFirestore();
+    let query;
 
     if (categoryId.id) {
-      filteredStamps = stamps.filter(
-        (stamp) => stamp.category === categoryId.id
-      );
+      query = database
+        .collection('stamps')
+        .where('category', '==', categoryId.id);
     } else {
-      filteredStamps = stamps;
+      query = database.collection('stamps');
     }
 
-    setDisplayingStamps(filteredStamps);
-  }, [categoryId, stamps]);
+    query.get().then((querySnapshot) => {
+      let stampsArray = querySnapshot.docs.map((item) => {
+        return {
+          ...item.data(),
+          id: item.id,
+        };
+      });
+      setDisplayingStamps(stampsArray);
+      setLoading(false);
+    });
+  }, [categoryId]);
 
   return (
     <StyledItemListContainer>

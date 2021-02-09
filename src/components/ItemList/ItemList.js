@@ -24,11 +24,11 @@ const StyledItemList = styled.section`
 
 const ItemList = ({ loading, stamps, category }) => {
   return (
-    <StyledItemList>
+    <>
       {loading ? (
         <div className="loading loading-lg"></div>
       ) : (
-        <>
+        <StyledItemList>
           <h2>{category ? category.toUpperCase() : 'Todas'}</h2>
           {stamps?.map((item) => {
             return (
@@ -43,9 +43,9 @@ const ItemList = ({ loading, stamps, category }) => {
               </Link>
             );
           })}
-        </>
+        </StyledItemList>
       )}
-    </StyledItemList>
+    </>
   );
 };
 
