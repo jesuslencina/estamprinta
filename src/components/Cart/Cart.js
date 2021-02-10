@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import firebase from 'firebase/app';
+import '@firebase/firestore';
 import { Link } from 'react-router-dom';
+import { getFirestore } from '../../firebase/index';
 import Bin from '../../assets/bin.svg';
+import Form from './Form';
 
 const StyledCart = styled.section`
   display: flex;
@@ -25,6 +29,15 @@ const StyledCart = styled.section`
       width: 100%;
     }
   }
+
+  .container {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .modal button {
+    width: 100%;
+  }
 `;
 
 const StyledCartList = styled.section`
@@ -43,7 +56,7 @@ const StyledCartItem = styled.article`
   div {
     display: flex;
     flex-flow: column wrap;
-    width: 50%;
+    width: 100%;
     padding: 1rem 0;
 
     h4 {
@@ -68,6 +81,37 @@ const StyledCartItem = styled.article`
 `;
 
 const Cart = ({ context }) => {
+  const [userInfo, setUserInfo] = useState();
+  const [modal, setModal] = useState(false);
+  const [orderId, setOrderId] = useState();
+
+  useEffect(() => {
+    if (userInfo) {
+      const database = getFirestore();
+      const orders = database.collection('orders');
+
+      const newOrder = {
+        buyer: userInfo,
+        items: context.cart,
+        date: firebase.firestore.Timestamp.fromDate(new Date()),
+        total: getTotal(),
+      };
+
+      orders
+        .add(newOrder)
+        .then(({ id }) => {
+          setOrderId(id);
+        })
+        .catch((err) => alert('Error: ' + err))
+        .then(() => {
+          setModal(true);
+          setUserInfo();
+          context.clearAll();
+        });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userInfo]);
+
   const getQuantity = () => {
     let amount = 0;
     context.cart.map((item) => (amount = amount + item.quantity));
@@ -91,27 +135,43 @@ const Cart = ({ context }) => {
           </Link>
         </div>
       ) : (
-        <StyledCartList>
-          {context.cart.map((item) => (
-            <StyledCartItem key={item.id}>
-              <img src={item.img} alt={item.title} />
-              <div>
-                <h4>{item.title}</h4>
-                <i>{item.quantity} unidades</i>
-                <b>${item.price}</b>
-                <img
-                  src={Bin}
-                  alt="Delete item"
-                  className="bin"
-                  onClick={() => context.removeItem(item.id)}
-                />
-              </div>
-            </StyledCartItem>
-          ))}
-          <span className="h2">Cantidad de estampillas: {getQuantity()}</span>
-          <span className="h2">Total: ${getTotal()}</span>
-        </StyledCartList>
+        <div className="container">
+          <StyledCartList>
+            <h2>Datos de la orden</h2>
+            {context.cart.map((item) => (
+              <StyledCartItem key={item.id}>
+                <img src={item.img} alt={item.title} />
+                <div>
+                  <h4>{item.title}</h4>
+                  <i>{item.quantity} unidades</i>
+                  <b>${item.price}</b>
+                  <img
+                    src={Bin}
+                    alt="Delete item"
+                    className="bin"
+                    onClick={() => context.removeItem(item.id)}
+                  />
+                </div>
+              </StyledCartItem>
+            ))}
+            <span className="h2">Cant. de Estampillas: {getQuantity()}</span>
+            <span className="h2">Total: ${getTotal()}</span>
+          </StyledCartList>
+          <Form setUserInfo={setUserInfo} />
+        </div>
       )}
+      <div className={`modal ${modal ? 'active' : ''}`}>
+        <div className="modal-overlay" onClick={() => setModal(false)}></div>
+        <div className="modal-container">
+          <div className="modal-body">
+            <h3>ID de su compra: </h3>
+            <p className="text-primary h3">{orderId}</p>
+            <button className="btn btn-primary" onClick={() => setModal(false)}>
+              Cerrar
+            </button>
+          </div>
+        </div>
+      </div>
     </StyledCart>
   );
 };

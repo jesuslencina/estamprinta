@@ -11,12 +11,12 @@ const StyledCartContainer = styled.section`
   justify-content: center;
 `;
 
-const CartContainer = ({ stamps }) => {
+const CartContainer = () => {
   const context = useContext(CartContext);
 
   return (
     <StyledCartContainer>
-      <Cart context={context} stamps={stamps} />
+      <Cart context={context} />
     </StyledCartContainer>
   );
 };
