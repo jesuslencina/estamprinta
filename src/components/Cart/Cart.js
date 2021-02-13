@@ -101,6 +101,26 @@ const Cart = ({ context }) => {
         .add(newOrder)
         .then(({ id }) => {
           setOrderId(id);
+          //Update Stock
+
+          const stampsToUpdate = database.collection('stamps').where(
+            firebase.firestore.FieldPath.documentId(),
+            'in',
+            context.cart.map((i) => i.id)
+          );
+
+          const updateStock = async () => {
+            const query = await stampsToUpdate.get();
+            const batch = database.batch();
+            query.docs.forEach((docSnapshot, idx) => {
+              batch.update(docSnapshot.ref, {
+                stock: docSnapshot.data().stock - context.cart[idx].quantity,
+              });
+            });
+            batch.commit();
+          };
+
+          updateStock();
         })
         .catch((err) => alert('Error: ' + err))
         .then(() => {
