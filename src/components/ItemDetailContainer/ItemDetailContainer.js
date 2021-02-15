@@ -40,7 +40,7 @@ const ItemDetailContainer = ({ stamps }) => {
       })
       .catch((error) => console.log('Error: ' + error))
       .finally(() => setLoading(false));
-  }, [itemId, stamps]);
+  }, [itemId]);
 
   const handleButton = (value) => {
     value > 0 ? setButtonVisibility(true) : setButtonVisibility(false);

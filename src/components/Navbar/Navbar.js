@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 import Logo from '../../assets/logo.svg';
+import RestoreWidget from '../RestoreWidget/RestoreWidget';
 import CartWidget from '../CartWidget/CartWidget';
 
 const StyledNav = styled.header`
@@ -102,6 +103,7 @@ const Navbar = () => {
       </section>
 
       <section className="navbar-section cart-section">
+        <RestoreWidget />
         <CartWidget />
       </section>
     </StyledNav>

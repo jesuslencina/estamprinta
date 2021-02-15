@@ -10,6 +10,7 @@ import Navbar from './components/Navbar/Navbar';
 import ItemListContainer from './components/ItemListContainer/ItemListContainer';
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
 import CartContainer from './components/CartContainer/CartContainer';
+import OrderView from './components/OrderView/OrderView';
 
 function App() {
   return (
@@ -32,6 +33,10 @@ function App() {
 
             <Route path="/cart">
               <CartContainer />
+            </Route>
+
+            <Route path="/order/:id">
+              <OrderView />
             </Route>
           </Switch>
         </CartProvider>
