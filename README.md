@@ -2,6 +2,9 @@
 
 **Deploy**: https://estamprinta.netlify.app/
 
+![Demonstration](https://media3.giphy.com/media/UCBK6PBzGJ7wZqIAwQ/giphy.gif)
+
+
 *Estamprintas* is a fictionary e-commerce site, in which re-printed stamps from different locations are sold. 
 
 Made by Jesus Lencina for Coderhouse.
