@@ -1,8 +1,10 @@
 import firebase from 'firebase/app';
 import '@firebase/firestore';
 
+const APIKEY = process.env.REACT_APP_FIREBASE_APIKEY;
+
 const app = firebase.initializeApp({
-  apiKey: 'AIzaSyDhcqswyx-pc1lx2NXsq5feefXJ-tCkEqM',
+  apiKey: APIKEY,
   authDomain: 'estamprintas.firebaseapp.com',
   projectId: 'estamprintas',
   storageBucket: 'estamprintas.appspot.com',
